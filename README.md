@@ -17,7 +17,6 @@
 [Dataset Overview](#dataset-overview) •
 [Architecture](#architecture) •
 [ML Benchmark](#ml-benchmark) •
-[Installation](#installation) •
 [API Specs](#api-specs)
 
 </div>
@@ -212,49 +211,6 @@ mental health/
 ├── style.css                                    # Glassmorphic dark styling & responsive grid layout
 └── app.js                                       # Client API communication, gauge math & fallback
 ```
-
----
-
-<a name="installation"></a>
-## ⚡ Getting Started & Installation
-
-### **1. Prerequisites**
-- Python 3.9 or higher
-- Git
-
-### **2. Clone the Repository**
-```bash
-git clone https://github.com/YOUR_USERNAME/mindpulse-student-mental-health.git
-cd mindpulse-student-mental-health
-```
-
-### **3. Set Up Virtual Environment (Recommended)**
-```bash
-# Windows
-python -m venv venv
-venv\Scripts\activate
-
-# macOS / Linux
-python3 -m venv venv
-source venv/bin/activate
-```
-
-### **4. Install Dependencies**
-```bash
-pip install -r requirements.txt
-```
-
-### **5. Run the FastAPI Server**
-```bash
-python -m uvicorn main:app --reload --port 8000
-```
-
-### **6. Open Application & API Documentation**
-- **Web Application Dashboard**: Open [`http://127.0.0.1:8000/`](http://127.0.0.1:8000/) in your browser.
-- **Interactive Swagger Documentation**: Open [`http://127.0.0.1:8000/docs`](http://127.0.0.1:8000/docs).
-- **ReDoc Schema View**: Open [`http://127.0.0.1:8000/redoc`](http://127.0.0.1:8000/redoc).
-
----
 
 <a name="api-specs"></a>
 ## 🔌 API Documentation

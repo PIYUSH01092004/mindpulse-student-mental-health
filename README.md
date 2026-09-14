@@ -23,18 +23,6 @@
 
 ---
 
-## 📌 GitHub Repository Details
-
-When publishing this repository to GitHub, use the following details:
-
-* **Repository Name**: `mindpulse-student-mental-health`  
-  *(Alternative options: `student-mental-health-predictor`, `mindpulse-ai`, `social-media-mental-health-ml`)*
-* **Repository Description**:  
-  > *Full-stack ML web application & FastAPI service predicting student mental health impact scores from digital habits, sleep, stress, and study metrics.*
-* **Topics / Tags**: `machine-learning`, `fastapi`, `python`, `scikit-learn`, `random-forest`, `mental-health`, `glassmorphism`, `fullstack-ml`
-
----
-
 ## 📖 Executive Summary
 
 **MindPulse** is an end-to-end Machine Learning web application designed to evaluate and predict the psychological impact of digital lifestyle factors on students. By combining exploratory data analysis, feature engineering, statistical transformations, and an ensemble **Random Forest Regressor** model with a modern, glassmorphic web dashboard, MindPulse offers students immediate visibility into their mental health trajectory along with tailored actionable insights.

@@ -13,12 +13,12 @@
   Predicting student mental health impact scores based on social media usage, academic workload, sleep patterns, physical activity, and stress levels.
 </p>
 
-[Key Features](#-key-features) •
-[Dataset Overview](#-dataset-overview--exploratory-data-analysis) •
-[Architecture](#-system-architecture) •
-[ML Benchmark](#-machine-learning-benchmark) •
-[Installation](#-getting-started--installation) •
-[API Specs](#-fastapi-documentation)
+[Key Features](#key-features) •
+[Dataset Overview](#dataset-overview) •
+[Architecture](#architecture) •
+[ML Benchmark](#ml-benchmark) •
+[Installation](#installation) •
+[API Specs](#api-specs)
 
 </div>
 
@@ -44,6 +44,7 @@ The system is deployed as a production-ready **FastAPI** web server that handles
 
 ---
 
+<a name="key-features"></a>
 ## ✨ Key Features
 
 ### 🤖 **1. Production Machine Learning Pipeline**
@@ -75,6 +76,7 @@ The system is deployed as a production-ready **FastAPI** web server that handles
 
 ---
 
+<a name="dataset-overview"></a>
 ## 📊 Dataset Overview & Exploratory Data Analysis
 
 The machine learning core is built upon the dataset **`Student Social Media And Mental Health Impact.csv`**, comprising **5,000 anonymized student observations** across 13 behavioral, academic, digital, and psychological dimensions.
@@ -129,6 +131,7 @@ The machine learning core is built upon the dataset **`Student Social Media And 
 
 ---
 
+<a name="architecture"></a>
 ## 🏗️ System Architecture
 
 ```
@@ -175,6 +178,7 @@ The machine learning core is built upon the dataset **`Student Social Media And 
 
 ---
 
+<a name="ml-benchmark"></a>
 ## 🔬 Machine Learning Benchmark & Performance
 
 During model development in [`ml_project.ipynb`](file:///c:/Users/Piyush%20Gupta/Desktop/mental%20health/ml_project.ipynb), multiple regression algorithms were trained and evaluated on 5,000 student records using an 80/20 train-test split.
@@ -211,6 +215,7 @@ mental health/
 
 ---
 
+<a name="installation"></a>
 ## ⚡ Getting Started & Installation
 
 ### **1. Prerequisites**
@@ -251,6 +256,7 @@ python -m uvicorn main:app --reload --port 8000
 
 ---
 
+<a name="api-specs"></a>
 ## 🔌 API Documentation
 
 ### **`POST /predict`**

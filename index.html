@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MindPulse - Student Mental Health & Screen Time Analytics AI</title>
+  <meta name="description" content="AI-powered mental health score predictor for students based on social media usage, lifestyle, study hours, sleep, and stress metrics.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="app-header">
+    <div class="header-container">
+      <div class="brand-logo">
+        <div class="brand-icon">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <h1>MindPulse</h1>
+          <p>Student Social Media & Mental Health AI</p>
+        </div>
+      </div>
+      
+      <div class="api-status-badge" id="apiStatusBadge">
+        <span class="status-dot" id="statusDot"></span>
+        <span id="statusText">Checking Backend API...</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Wrapper -->
+  <div class="main-wrapper">
+    
+    <!-- Presets Bar -->
+    <div class="presets-card">
+      <div class="presets-title">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+        </svg>
+        <span>Quick Demo Presets:</span>
+      </div>
+      <div class="presets-buttons">
+        <button class="preset-btn" onclick="loadPreset('balanced')">
+          <span>🌿 Balanced Lifestyle</span>
+        </button>
+        <button class="preset-btn" onclick="loadPreset('high_social')">
+          <span>📱 High Screen Time</span>
+        </button>
+        <button class="preset-btn" onclick="loadPreset('exam_stress')">
+          <span>📚 Exam Crunch / High Stress</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- App Grid -->
+    <div class="app-grid">
+      
+      <!-- Input Form Card -->
+      <main class="form-container">
+        <form id="predictionForm" onsubmit="handleFormSubmit(event)">
+          
+          <!-- Section 1: Demographics -->
+          <div class="form-section">
+            <div class="section-header">
+              <span class="section-number">1</span>
+              <h2>Student Profile & Demographics</h2>
+            </div>
+            
+            <div class="form-group-grid">
+              <!-- Age -->
+              <div class="form-field">
+                <label for="age">Age <span class="field-hint">(10 - 100 yrs)</span></label>
+                <input type="number" id="age" name="Age" min="10" max="100" value="21" required>
+              </div>
+
+              <!-- Gender -->
+              <div class="form-field">
+                <label>Gender</label>
+                <div class="chips-container">
+                  <label class="chip-option">
+                    <input type="radio" name="Gender" value="Male" checked>
+                    <span class="chip-label">Male</span>
+                  </label>
+                  <label class="chip-option">
+                    <input type="radio" name="Gender" value="Female">
+                    <span class="chip-label">Female</span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Academic Level -->
+              <div class="form-field">
+                <label>Academic Level</label>
+                <div class="chips-container">
+                  <label class="chip-option">
+                    <input type="radio" name="Academic_Level" value="Undergraduate" checked>
+                    <span class="chip-label">Undergraduate</span>
+                  </label>
+                  <label class="chip-option">
+                    <input type="radio" name="Academic_Level" value="Graduate">
+                    <span class="chip-label">Graduate</span>
+                  </label>
+                  <label class="chip-option">
+                    <input type="radio" name="Academic_Level" value="High School">
+                    <span class="chip-label">High School</span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Country -->
+              <div class="form-field">
+                <label for="country">Country</label>
+                <select id="country" name="Country" required>
+                  <option value="India" selected>India</option>
+                  <option value="USA">USA</option>
+                  <option value="Canada">Canada</option>
+                  <option value="Australia">Australia</option>
+                  <option value="UK">UK</option>
+                  <option value="Germany">Germany</option>
+                  <option value="Mexico">Mexico</option>
+                  <option value="Turkey">Turkey</option>
+                  <option value="France">France</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 2: Social Media & Digital Usage -->
+          <div class="form-section">
+            <div class="section-header">
+              <span class="section-number">2</span>
+              <h2>Social Media & Digital Habits</h2>
+            </div>
+            
+            <!-- Most Used Platform -->
+            <div class="form-field full-width" style="margin-bottom: 18px;">
+              <label>Most Used Social Media Platform</label>
+              <div class="platform-grid">
+                
+                <label class="platform-card">
+                  <input type="radio" name="Most_Used_Platform" value="Instagram" checked>
+                  <div class="platform-content">
+                    <span>📷 Instagram</span>
+                  </div>
+                </label>
+
+                <label class="platform-card">
+                  <input type="radio" name="Most_Used_Platform" value="YouTube">
+                  <div class="platform-content">
+                    <span>▶️ YouTube</span>
+                  </div>
+                </label>
+
+                <label class="platform-card">
+                  <input type="radio" name="Most_Used_Platform" value="TikTok">
+                  <div class="platform-content">
+                    <span>🎵 TikTok</span>
+                  </div>
+                </label>
+
+                <label class="platform-card">
+                  <input type="radio" name="Most_Used_Platform" value="Snapchat">
+                  <div class="platform-content">
+                    <span>👻 Snapchat</span>
+                  </div>
+                </label>
+
+                <label class="platform-card">
+                  <input type="radio" name="Most_Used_Platform" value="Facebook">
+                  <div class="platform-content">
+                    <span>📘 Facebook</span>
+                  </div>
+                </label>
+
+                <label class="platform-card">
+                  <input type="radio" name="Most_Used_Platform" value="Twitter">
+                  <div class="platform-content">
+                    <span>🐤 Twitter / X</span>
+                  </div>
+                </label>
+
+                <label class="platform-card">
+                  <input type="radio" name="Most_Used_Platform" value="LinkedIn">
+                  <div class="platform-content">
+                    <span>💼 LinkedIn</span>
+                  </div>
+                </label>
+
+                <label class="platform-card">
+                  <input type="radio" name="Most_Used_Platform" value="Whatsapp">
+                  <div class="platform-content">
+                    <span>💬 WhatsApp</span>
+                  </div>
+                </label>
+
+                <label class="platform-card">
+                  <input type="radio" name="Most_Used_Platform" value="WeChat">
+                  <div class="platform-content">
+                    <span>🌐 WeChat</span>
+                  </div>
+                </label>
+
+                <label class="platform-card">
+                  <input type="radio" name="Most_Used_Platform" value="LINE">
+                  <div class="platform-content">
+                    <span>💚 LINE</span>
+                  </div>
+                </label>
+
+                <label class="platform-card">
+                  <input type="radio" name="Most_Used_Platform" value="KakaoTalk">
+                  <div class="platform-content">
+                    <span>🟡 KakaoTalk</span>
+                  </div>
+                </label>
+
+                <label class="platform-card">
+                  <input type="radio" name="Most_Used_Platform" value="VKontakte">
+                  <div class="platform-content">
+                    <span>🔵 VKontakte</span>
+                  </div>
+                </label>
+
+              </div>
+            </div>
+
+            <div class="form-group-grid">
+              <!-- Purpose of Use -->
+              <div class="form-field">
+                <label>Primary Purpose of Use</label>
+                <div class="chips-container">
+                  <label class="chip-option">
+                    <input type="radio" name="Purpose_Of_Use" value="Entertainment" checked>
+                    <span class="chip-label">Entertainment</span>
+                  </label>
+                  <label class="chip-option">
+                    <input type="radio" name="Purpose_Of_Use" value="Education">
+                    <span class="chip-label">Education</span>
+                  </label>
+                  <label class="chip-option">
+                    <input type="radio" name="Purpose_Of_Use" value="Networking">
+                    <span class="chip-label">Networking</span>
+                  </label>
+                  <label class="chip-option">
+                    <input type="radio" name="Purpose_Of_Use" value="News">
+                    <span class="chip-label">News</span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Avg Daily Usage Hours -->
+              <div class="form-field range-slider-wrapper">
+                <label for="avgUsage">
+                  <span>Avg Daily Screen Time</span>
+                  <span class="slider-val-badge" id="avgUsageVal">4.0 hrs</span>
+                </label>
+                <input type="range" id="avgUsage" name="Avg_Daily_Usage_Hours" min="0" max="24" step="0.5" value="4.0" oninput="updateRangeVal('avgUsageVal', this.value + ' hrs')">
+              </div>
+
+              <!-- Daily Unlocks -->
+              <div class="form-field range-slider-wrapper">
+                <label for="dailyUnlocks">
+                  <span>Daily Phone Unlocks</span>
+                  <span class="slider-val-badge" id="dailyUnlocksVal">120 unlocks</span>
+                </label>
+                <input type="range" id="dailyUnlocks" name="Daily_Unlocks" min="0" max="350" step="5" value="120" oninput="updateRangeVal('dailyUnlocksVal', this.value + ' unlocks')">
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 3: Health & Lifestyle -->
+          <div class="form-section">
+            <div class="section-header">
+              <span class="section-number">3</span>
+              <h2>Daily Lifestyle & Mental Wellbeing</h2>
+            </div>
+            
+            <div class="form-group-grid">
+              <!-- Study Hours -->
+              <div class="form-field range-slider-wrapper">
+                <label for="studyHours">
+                  <span>Daily Study Hours</span>
+                  <span class="slider-val-badge" id="studyHoursVal">5.0 hrs</span>
+                </label>
+                <input type="range" id="studyHours" name="Study_Hours" min="0" max="24" step="0.5" value="5.0" oninput="updateRangeVal('studyHoursVal', this.value + ' hrs')">
+              </div>
+
+              <!-- Physical Activity Hours -->
+              <div class="form-field range-slider-wrapper">
+                <label for="physicalActivity">
+                  <span>Physical Activity</span>
+                  <span class="slider-val-badge" id="physicalActivityVal">1.5 hrs</span>
+                </label>
+                <input type="range" id="physicalActivity" name="Physical_Activity_Hours" min="0" max="24" step="0.5" value="1.5" oninput="updateRangeVal('physicalActivityVal', this.value + ' hrs')">
+              </div>
+
+              <!-- Sleep Hours -->
+              <div class="form-field range-slider-wrapper">
+                <label for="sleepHours">
+                  <span>Sleep Per Night</span>
+                  <span class="slider-val-badge" id="sleepHoursVal">7.0 hrs</span>
+                </label>
+                <input type="range" id="sleepHours" name="Sleep_Hours_Per_Night" min="0" max="24" step="0.5" value="7.0" oninput="updateRangeVal('sleepHoursVal', this.value + ' hrs')">
+              </div>
+
+              <!-- Stress Level -->
+              <div class="form-field full-width">
+                <label>Current Stress Level</label>
+                <div class="chips-container">
+                  <label class="chip-option">
+                    <input type="radio" name="Stress_Level" value="Low">
+                    <span class="chip-label">Low Stress</span>
+                  </label>
+                  <label class="chip-option">
+                    <input type="radio" name="Stress_Level" value="Medium" checked>
+                    <span class="chip-label">Medium Stress</span>
+                  </label>
+                  <label class="chip-option">
+                    <input type="radio" name="Stress_Level" value="High">
+                    <span class="chip-label">High Stress</span>
+                  </label>
+                  <label class="chip-option">
+                    <input type="radio" name="Stress_Level" value="Very High">
+                    <span class="chip-label">Very High Stress</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <button type="submit" class="submit-btn" id="submitBtn">
+            <span id="btnText">Calculate Mental Health Score</span>
+            <div class="spinner" id="btnSpinner" style="display: none;"></div>
+          </button>
+        </form>
+      </main>
+
+      <!-- Sidebar Results & Insights Card -->
+      <aside class="results-card">
+        <div class="results-header">
+          <h3>Predicted Mental Health Score</h3>
+          <p>AI Model Evaluation (Scale 0 - 10)</p>
+        </div>
+
+        <!-- Gauge Meter -->
+        <div class="gauge-container">
+          <svg class="gauge-svg" viewBox="0 0 200 115">
+            <defs>
+              <linearGradient id="gauge-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#f43f5e" />
+                <stop offset="50%" stop-color="#f59e0b" />
+                <stop offset="100%" stop-color="#10b981" />
+              </linearGradient>
+            </defs>
+            <!-- Gauge arc path radius 80, center (100,100) -->
+            <path class="gauge-bg" d="M 20 100 A 80 80 0 0 1 180 100" />
+            <path class="gauge-fill" id="gaugeFill" d="M 20 100 A 80 80 0 0 1 180 100" />
+          </svg>
+          <div class="gauge-value-display">
+            <span class="score-num" id="scoreValue">--</span>
+            <span class="score-max">OUT OF 10.0</span>
+          </div>
+        </div>
+
+        <!-- Status Badge -->
+        <div class="health-status-badge status-good" id="statusBadge">
+          <span id="statusBadgeText">Ready for Input</span>
+        </div>
+
+        <!-- Factor Analysis Box -->
+        <div class="factors-box">
+          <div class="factors-title">Lifestyle Impact Breakdown</div>
+          <div class="factor-item">
+            <span class="factor-name">Sleep Quality Index</span>
+            <span class="factor-tag tag-positive" id="tagSleep">Optimal</span>
+          </div>
+          <div class="factor-item">
+            <span class="factor-name">Screen & Unlock Ratio</span>
+            <span class="factor-tag tag-neutral" id="tagScreen">Moderate</span>
+          </div>
+          <div class="factor-item">
+            <span class="factor-name">Study / Activity Balance</span>
+            <span class="factor-tag tag-positive" id="tagBalance">Healthy</span>
+          </div>
+        </div>
+
+        <!-- Recommendations Box -->
+        <div class="recommendations-box">
+          <h4>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/>
+            </svg>
+            Personalized Wellness Insights
+          </h4>
+          <ul class="recommendations-list" id="recommendationsList">
+            <li>Submit parameters to generate AI personalized recommendations.</li>
+          </ul>
+        </div>
+
+        <!-- Connection Error Alert (Hidden by Default) -->
+        <div class="alert-box" id="connectionAlert" style="display: none;">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+          </svg>
+          <div>
+            <strong>Backend Connection Offline</strong><br>
+            Make sure your FastAPI server is running via:<br>
+            <code>uvicorn main:app --reload</code>
+          </div>
+        </div>
+      </aside>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <p>MindPulse Student Health Machine Learning Model &bull; Built with FastAPI & Vanilla JavaScript</p>
+    </footer>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

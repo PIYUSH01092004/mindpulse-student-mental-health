@@ -9,7 +9,7 @@
 ![License](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)
 
 <p align="center">
-  <b>A Full-Stack Machine Learning Web Application & REST API</b><br>
+  <b>A Full-Stack Machine Learning Web Application Powered by FastAPI</b><br>
   Predicting student mental health impact scores based on social media usage, academic workload, sleep patterns, physical activity, and stress levels.
 </p>
 
@@ -18,7 +18,7 @@
 [Architecture](#-system-architecture) •
 [ML Benchmark](#-machine-learning-benchmark) •
 [Installation](#-getting-started--installation) •
-[API Specs](#-api-documentation)
+[API Specs](#-fastapi-documentation)
 
 </div>
 
@@ -52,7 +52,7 @@ The system is deployed as a production-ready **FastAPI** web server that handles
 - Powered by a tuned **Random Forest Regressor** achieving an **$R^2$ score of ~0.878** and a low **MAE of 0.346**.
 
 ### ⚡ **2. High-Performance FastAPI Backend**
-- RESTful asynchronous API endpoint (`POST /predict`) with automatic request validation using **Pydantic**.
+- FastAPI asynchronous prediction endpoint (`POST /predict`) with automatic request validation using **Pydantic**.
 - **Categorical Normalization Guard**: Built-in normalization defense ensuring seamless handling of string casing variations (e.g. `Very High` vs `very High`).
 - Integrated **CORS middleware** for secure cross-origin requests and static file serving for the frontend dashboard.
 - Automatic interactive documentation via **Swagger UI** (`/docs`) and **ReDoc** (`/redoc`).

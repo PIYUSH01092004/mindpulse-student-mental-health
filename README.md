@@ -6,6 +6,8 @@
 ![FastAPI](https://img.shields.io/badge/FastAPI-0.100+-009688?style=for-the-badge&logo=fastapi&logoColor=white)
 ![Scikit-Learn](https://img.shields.io/badge/scikit_learn-1.3+-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white)
 ![Pandas](https://img.shields.io/badge/Pandas-2.0+-150458?style=for-the-badge&logo=pandas&logoColor=white)
+[![Live Demo](https://img.shields.io/badge/Live_Demo-Render-46E3B7?style=for-the-badge&logo=render&logoColor=white)](https://mindpulse-app-u6xz.onrender.com/)
+[![API Docs](https://img.shields.io/badge/API_Docs-Swagger-85EA2D?style=for-the-badge&logo=swagger&logoColor=black)](https://mindpulse-app-u6xz.onrender.com/docs)
 ![License](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)
 
 <p align="center">
@@ -13,6 +15,12 @@
   Predicting student mental health impact scores based on social media usage, academic workload, sleep patterns, physical activity, and stress levels.
 </p>
 
+<p align="center">
+  🌐 <b>Live Web Application:</b> <a href="https://mindpulse-app-u6xz.onrender.com/" target="_blank">mindpulse-app-u6xz.onrender.com</a><br>
+  📖 <b>Interactive API Docs:</b> <a href="https://mindpulse-app-u6xz.onrender.com/docs" target="_blank">mindpulse-app-u6xz.onrender.com/docs</a>
+</p>
+
+[Live Demo](https://mindpulse-app-u6xz.onrender.com/) •
 [Key Features](#key-features) •
 [Dataset Overview](#dataset-overview) •
 [Architecture](#architecture) •
@@ -202,6 +210,10 @@ mental health/
 
 <a name="api-specs"></a>
 ## 🔌 API Documentation
+
+- **Live Base URL**: `https://mindpulse-app-u6xz.onrender.com`
+- **Swagger UI Interactive Docs**: `https://mindpulse-app-u6xz.onrender.com/docs`
+- **ReDoc API Documentation**: `https://mindpulse-app-u6xz.onrender.com/redoc`
 
 ### **`POST /predict`**
 Calculates the predicted student mental health impact score.
